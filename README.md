@@ -1,5 +1,5 @@
 # kokiri
-Test revisions of crates again other revisions of crates.
+Test revisions of crates against other revisions of crates.
 
 ## Example
 Test master of [deku](https://github.com/sharksforarms/deku) against
