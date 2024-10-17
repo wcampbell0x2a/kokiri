@@ -17,7 +17,7 @@ struct Instruction {
     name: String,
     package: String,
     rev: String,
-    before_action: String,
+    before_action: Option<String>,
 }
 
 #[derive(Debug, Deserialize)]
@@ -120,7 +120,9 @@ fn main() {
 
         let proj_dir = tmp_dir.join(name);
 
-        run_extra_cmd(&before_action, &proj_dir);
+        if let Some(before_action) = &before_action {
+            run_extra_cmd(&before_action, &proj_dir);
+        }
 
         println!("[-] Evaluating {:?}", proj_dir);
         let output = Command::new("cargo")
@@ -155,7 +157,9 @@ fn main() {
             break;
         }
 
-        run_extra_cmd(&before_action, &proj_dir);
+        if let Some(before_action) = &before_action {
+            run_extra_cmd(&before_action, &proj_dir);
+        }
 
         println!("[-] Checking Modified {:?}", proj_dir);
         let output = Command::new("cargo")
